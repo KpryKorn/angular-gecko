@@ -1,0 +1,61 @@
+<section>
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">
+      Suivi des Cryptomonnaies
+    </h1>
+
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="py-3 px-6">Nom</th>
+            <th scope="col" class="py-3 px-6">Prix</th>
+            <th scope="col" class="py-3 px-6 text-right">Variation (24h)</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (crypto of cryptos(); track crypto.name) {
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <th
+              scope="row"
+              class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              <div class="flex items-center">
+                <img
+                  class="w-8 h-8 rounded-full"
+                  [src]="crypto.image"
+                  [alt]="crypto.name"
+                />
+                <div class="pl-3">
+                  <div class="text-base font-semibold">{{ crypto.name }}</div>
+                  <div class="font-normal text-gray-500">
+                    {{ crypto.displaySymbol }}
+                  </div>
+                </div>
+              </div>
+            </th>
+            <td class="py-4 px-6">{{ crypto.formattedPrice }}</td>
+            <td
+              class="py-4 px-6 text-right"
+              [class.text-green-500]="crypto.isRising"
+              [class.text-red-500]="!crypto.isRising"
+            >
+              {{ crypto.priceChangePercentage.toFixed(2) }} %
+            </td>
+          </tr>
+          } @empty {
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td colspan="3" class="text-center py-8 text-gray-500">
+              Chargement des données ou aucune donnée disponible...
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
