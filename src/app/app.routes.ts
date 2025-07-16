@@ -1,10 +1,15 @@
 import { Routes } from '@angular/router';
-import { TrackerComponent } from './components/pages/tracker/tracker.component';
+import { TrackerPageComponent } from './components/pages/tracker-page/tracker-page.component';
+import { CryptoDetailPageComponent } from './components/pages/crypto-detail-page/crypto-detail-page.component';
 
 export const routes: Routes = [
   {
     path: 'tracker',
-    component: TrackerComponent,
+    component: TrackerPageComponent,
+  },
+  {
+    path: 'details/:id',
+    component: CryptoDetailPageComponent,
   },
   {
     path: '**',
